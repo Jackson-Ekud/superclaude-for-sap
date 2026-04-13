@@ -1,0 +1,20 @@
+{
+  "name": "sc4sap",
+  "version": "0.1.0",
+  "description": "SAP development plugin for Claude Code — ABAP object CRUD, code analysis, SPRO config reference for On-Premise S/4HANA",
+  "author": {
+    "name": "paek seunghyun"
+  },
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "sap",
+    "abap",
+    "s4hana",
+    "erp",
+    "abap-development"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

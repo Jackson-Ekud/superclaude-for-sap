@@ -1,0 +1,28 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "sc4sap",
+  "description": "SuperClaude for SAP — SAP 개발 환경에 최적화된 Claude Code 플러그인 | Claude Code plugin optimized for SAP development environments",
+  "owner": {
+    "name": "paek seunghyun"
+  },
+  "plugins": [
+    {
+      "name": "sc4sap",
+      "description": "SuperClaude for SAP — ABAP 오브젝트 CRUD, 코드 분석/리팩토링, SPRO 컨피그 참조, CTS 트랜스포트 관리. 24개 SAP 전문 에이전트, 14개 스킬 제공. | ABAP object CRUD, code analysis/refactoring, SPRO config reference, CTS transport management. 24 SAP-specialized agents, 14 skills.",
+      "version": "0.1.0",
+      "author": {
+        "name": "paek seunghyun"
+      },
+      "source": "./",
+      "category": "development",
+      "tags": [
+        "sap",
+        "abap",
+        "s4hana",
+        "erp",
+        "abap-development"
+      ]
+    }
+  ],
+  "version": "0.1.0"
+}
