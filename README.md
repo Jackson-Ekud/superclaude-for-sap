@@ -4,7 +4,7 @@ English | [한국어](README.ko.md)
 
 > Claude Code plugin for SAP ABAP development on On-Premise S/4HANA
 
-[![npm version](https://img.shields.io/npm/v/superclaude-for-sap?color=cb3837)](https://www.npmjs.com/package/superclaude-for-sap)
+[![npm version](https://img.shields.io/badge/npm-v4.11.5-cb3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/superclaude-for-sap) 
 [![GitHub stars](https://img.shields.io/github/stars/babamba2/superclaude-for-sap?style=flat&color=yellow)](https://github.com/babamba2/superclaude-for-sap)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
