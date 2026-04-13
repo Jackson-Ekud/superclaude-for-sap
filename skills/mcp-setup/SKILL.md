@@ -13,7 +13,7 @@ The `mcp-abap-adt` MCP server is the bridge between Claude Code and your SAP sys
 </Purpose>
 
 <Source>
-MCP server repository: https://github.com/babamba2/abap-mcp-adt-powerup.git
+MCP server repository: https://github.com/babamba2/abap-mcp-adt.git
 </Source>
 
 <Prerequisites>
@@ -24,52 +24,52 @@ MCP server repository: https://github.com/babamba2/abap-mcp-adt-powerup.git
 </Prerequisites>
 
 <Installation_Steps>
-1. **Clone the repository**
+1. **Automatic installation (recommended)**
+   The MCP server is automatically installed into the plugin's `vendor/abap-mcp-adt/` directory during setup:
    ```bash
-   git clone https://github.com/babamba2/abap-mcp-adt-powerup.git
-   cd abap-mcp-adt-powerup
-   npm install
-   npm run build
+   /sc4sap:setup          # full setup wizard (includes MCP install)
+   /sc4sap:setup mcp      # MCP install only
    ```
-
-2. **Create the configuration file**
-   Create `config.json` in the cloned directory:
-   ```json
-   {
-     "host": "https://your-sap-host:44300",
-     "client": "100",
-     "username": "your-user",
-     "password": "your-password",
-     "language": "EN"
-   }
+   Or via npm:
+   ```bash
+   npm run build          # runs tsc + installs abap-mcp-adt into vendor/
    ```
-   - `host`: SAP system URL with HTTPS and ICM port (typically 44300 for HTTPS)
-   - `client`: SAP client number (3 digits, e.g., "100")
-   - `username` / `password`: SAP credentials with developer access
-   - `language`: Logon language (EN, DE, etc.)
+   This clones the repo, runs `npm install`, and builds it. The plugin's `.mcp.json` is pre-configured to launch `bridge/mcp-server.cjs`, which delegates to the vendor-installed server.
 
-3. **Register with Claude Code**
-   Add to your `~/.claude/claude_desktop_config.json` (or project `.mcp.json`):
-   ```json
-   {
-     "mcpServers": {
-       "mcp-abap-adt": {
-         "command": "node",
-         "args": ["/path/to/abap-mcp-adt-powerup/dist/index.js"],
-         "env": {
-           "CONFIG_PATH": "/path/to/abap-mcp-adt-powerup/config.json"
-         }
-       }
-     }
-   }
+2. **Configure SAP connection**
+   Create `.sc4sap/sap.env` in the plugin directory with your SAP credentials:
+   ```env
+   SAP_URL=https://your-sap-host:44300
+   SAP_CLIENT=100
+   SAP_AUTH_TYPE=basic
+   SAP_USERNAME=your-user
+   SAP_PASSWORD=your-password
+   SAP_LANGUAGE=EN
+   SAP_SYSTEM_TYPE=onprem
+   TLS_REJECT_UNAUTHORIZED=0
    ```
+   - `SAP_URL`: SAP system URL with HTTPS and ICM port (typically 44300 for HTTPS)
+   - `SAP_CLIENT`: SAP client number (3 digits, e.g., "100")
+   - `SAP_AUTH_TYPE`: `basic` for username/password, `xsuaa` for JWT (OAuth2)
+   - `SAP_USERNAME` / `SAP_PASSWORD`: SAP credentials with developer access
+   - `SAP_LANGUAGE`: Logon language (EN, DE, etc.)
+   - `SAP_SYSTEM_TYPE`: `onprem` for on-premise S/4HANA, `cloud` for BTP
+   - `TLS_REJECT_UNAUTHORIZED`: Set to `0` for self-signed certificates (dev only)
 
-4. **Verify the connection**
-   After restarting Claude Code, run:
+   The bridge reads this file automatically on startup. Environment variables take precedence over file values.
+
+3. **Verify the connection**
+   After restarting Claude Code (or reconnecting MCP via `/mcp`), run:
    ```
    /sc4sap:doctor
    ```
    Or manually test by calling `GetSession` — it should return your SAP system ID, client, and username.
+
+4. **Update the MCP server**
+   To update to the latest version:
+   ```bash
+   node scripts/build-mcp-server.mjs --update
+   ```
 </Installation_Steps>
 
 <Troubleshooting>

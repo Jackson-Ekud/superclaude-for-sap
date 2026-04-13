@@ -21,16 +21,30 @@
 - Never release transports with syntax errors or inactive objects
 - One transport per logical change unit
 
+### SAP Version & ABAP Release Awareness
+- **CRITICAL**: Always check `.sc4sap/config.json` for `sapVersion` and `abapRelease` before any work
+- `sapVersion`: `S4` (S/4HANA) or `ECC` (ECC 6.0) — determines tables, BAPIs, TCodes, patterns
+- `abapRelease`: e.g., `750`, `756`, `758` — determines available ABAP syntax features
+- Key version differences:
+  - **S4**: BP (BUT000), MATDOC, ACDOCA (Universal Journal), Fiori, CDS-based
+  - **ECC**: Vendor (LFA1/XK01) + Customer (KNA1/XD01) separate, MKPF/MSEG, BKPF/BSEG
+- ABAP syntax restrictions by release:
+  - **< 740**: No inline declarations, no constructor expressions (`NEW`, `VALUE`, `CORRESPONDING`)
+  - **< 750**: No Open SQL expressions (CASE/CAST/COALESCE in SELECT)
+  - **< 754**: No RAP/EML, no `FINAL` classes
+  - **≥ 740**: Prefer modern syntax within the allowed release range
+
 ### Coding Standards (ABAP Clean Code)
 - Follow SAP ABAP Clean Code guidelines
 - Use meaningful variable names (no single-letter variables except loop counters)
-- Prefer `NEW` over `CREATE OBJECT`
-- Prefer `VALUE` and `CORRESPONDING` over `MOVE-CORRESPONDING`
-- Use inline declarations where appropriate
+- Prefer `NEW` over `CREATE OBJECT` (ABAP 740+)
+- Prefer `VALUE` and `CORRESPONDING` over `MOVE-CORRESPONDING` (ABAP 740+)
+- Use inline declarations where appropriate (ABAP 740+)
 - Always handle exceptions with `TRY...CATCH`
 - Avoid `SELECT *` — always specify required fields
-- Use CDS views over direct table access where possible
+- Use CDS views over direct table access where possible (ABAP 750+)
 - Write unit tests for all custom classes (when applicable)
+- **Always verify syntax is compatible with the configured `abapRelease`**
 
 ### Object Activation
 - Always activate objects after creation or modification
