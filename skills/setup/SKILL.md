@@ -72,8 +72,16 @@ Process the request by the **first argument only**:
    - Which ABAP syntax features agents can use in generated code (see ABAP Release Reference below)
    - Store as `SAP_VERSION` (`S4` or `ECC`) and `ABAP_RELEASE` (e.g., `756`) in `.sc4sap/sap.env` and `.sc4sap/config.json`
 
-3. **Install `abap-mcp-adt-powerup` MCP server** — run `node scripts/build-mcp-server.mjs` to clone (`github.com/babamba2/abap-mcp-adt-powerup.git`) and build the external MCP server into `vendor/abap-mcp-adt/`
-   - If already installed, skip (use `--update` to refresh)
+3. **Install `abap-mcp-adt-powerup` MCP server** — clone (`github.com/babamba2/abap-mcp-adt-powerup.git`) and build the external MCP server into the **plugin root's** `vendor/abap-mcp-adt/` folder (typically `~/.claude/plugins/marketplaces/sc4sap/vendor/abap-mcp-adt/`), **NOT** the user's project directory.
+   - **⚠️ Path resolution (MANDATORY)**: the install target must be the plugin root, not the current working directory. Resolve the plugin root **dynamically** — never hardcode the path. This skill file lives at `<PLUGIN_ROOT>/skills/setup/SKILL.md`, so:
+     - `PLUGIN_ROOT` = absolute path of this `SKILL.md`, then go up two levels (`../..`)
+     - On Windows this will usually be `C:\Users\<user>\.claude\plugins\marketplaces\sc4sap`, but **derive it at runtime**, do not assume
+   - **Invocation**: always call the script with its **absolute path**, not a relative path, so CWD is irrelevant:
+     ```bash
+     node "<PLUGIN_ROOT>/scripts/build-mcp-server.mjs"
+     ```
+     The script itself uses `__dirname` to anchor `vendor/` next to itself, so once invoked with the absolute path it will always install into `<PLUGIN_ROOT>/vendor/abap-mcp-adt/` regardless of where the user ran Claude Code from.
+   - If already installed (launcher present at `<PLUGIN_ROOT>/vendor/abap-mcp-adt/dist/server/launcher.js`), skip (use `--update` to refresh)
    - On failure, show error and guide user to manual install
 4. **Configure SAP connection** — ask user for SAP credentials and write `.sc4sap/sap.env`:
    - `SAP_URL` (e.g., `https://your-sap-host:44300`)

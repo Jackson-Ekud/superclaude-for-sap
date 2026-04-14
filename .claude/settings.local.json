@@ -8,7 +8,12 @@
       "Bash(git checkout:*)",
       "Bash(git reset:*)",
       "Bash(git cherry-pick:*)",
-      "Bash(git remote:*)"
+      "Bash(git remote:*)",
+      "Bash(node:*)",
+      "Read(//c/Users/pssps/.claude/plugins/cache/sc4sap/sc4sap/0.1.0/vendor/abap-mcp-adt/dist/server/**)",
+      "Read(//c/Users/pssps/.claude/plugins/cache/sc4sap/sc4sap/0.1.0//**)",
+      "Read(//c/Users/pssps/.claude/plugins/marketplaces//**)",
+      "Read(//c/Users/pssps/.claude/plugins/marketplaces/sc4sap//**)"
     ]
   }
 }
