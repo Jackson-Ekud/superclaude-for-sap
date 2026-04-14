@@ -540,11 +540,11 @@ This project was inspired by [**oh-my-claudecode**](https://github.com/huryechan
 
 ## Author
 
-- [paek seunghyun](https://www.linkedin.com/in/seunghyun-paek-5b83b7183/)
+- **paek seunghyun** &nbsp; [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/seunghyun-paek-5b83b7183/)
 
 ## Contributors
 
-- [김시훈 (Kim Sihun)](https://www.linkedin.com/in/sihun-kim-27737132b/)
+- **김시훈 (Kim Sihun)** &nbsp; [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sihun-kim-27737132b/)
 
 ## License
 
